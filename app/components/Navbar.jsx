@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../reducers/user';
 
-export default function Navbar () {
+function Navbar ({user, logoutUser }) {
 
   return (
     <div>
@@ -20,11 +22,14 @@ export default function Navbar () {
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
               <li>
-                <NavLink to="/" activeClassName="active" className="nav-link">Home</NavLink>
+                { user ? <NavLink exact to="/" activeClassName="active-test" className="nav-link">Home</NavLink> : null }
               </li>
               <li>
-                <NavLink to="/students" activeClassName="active" className="nav-link">Students</NavLink>
+                { user ? <NavLink exact to="/students" activeClassName="active-test" className="nav-link">Students</NavLink> : null }
               </li>
+                { user ? <li><a onClick={logoutUser} className="nav-link">Logout</a></li> : null }
+                { user ? null : <li><NavLink to="/" className="nav-link">Login</NavLink></li> }
+                { user ? null : <li><NavLink to="/signup" className="nav-link">Sign Up</NavLink></li> }
             </ul>
           </div>
         </div>
@@ -32,3 +37,13 @@ export default function Navbar () {
     </div>
   );
 }
+
+const mapState = (state, ownProps) => ({
+  user: state.user
+})
+
+const mapDispatch = dispatch => ({
+  logoutUser: () => dispatch(logout())
+})
+
+export default connect(mapState, mapDispatch)(Navbar);

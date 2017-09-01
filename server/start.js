@@ -3,7 +3,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const {resolve} = require('path')
-
+const session = require('express-session');
 const pkg = require('../package.json')
 
 const app = express()
@@ -17,7 +17,11 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = app
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
-  .use('/bootstrap', express.static(resolve(__dirname, '..', '/node_modules/bootstrap/dist')))
+  .use(session({
+    secret: 'not so secret',
+    saveUninitialized: false,
+    resave: false
+  }))
   .use(express.static(resolve(__dirname, '..', 'public'))) // Serve static files from ../public
   .use('/api', require('./api')) // Serve our api
   .get('*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html'))) // Send index.html for any other requests.

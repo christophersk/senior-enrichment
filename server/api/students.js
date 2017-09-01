@@ -8,6 +8,9 @@ module.exports = router;
 
 // Get all students
 router.get('/', function (req, res, next) {
+  if (!req.session.user) {
+    res.sendStatus(401);
+  }
   Student.findAll()
     .then(students => {
       res.json(students);
@@ -17,6 +20,9 @@ router.get('/', function (req, res, next) {
 
 // Create a new student
 router.post('/', function (req, res, next) {
+  if (!req.session.user) {
+    res.sendStatus(401);
+  }
   Student.findOrCreate({where: req.body })
     .spread(student => {
       res.json(student)
@@ -26,6 +32,9 @@ router.post('/', function (req, res, next) {
 
 // Get student by ID
 router.get('/:studentId', function (req, res, next) {
+  if (!req.session.user) {
+    res.sendStatus(401);
+  }
   Student.findById(req.params.studentId)
     .then(student => {
       res.json(student);
@@ -35,7 +44,9 @@ router.get('/:studentId', function (req, res, next) {
 
 // Update an existing student
 router.put('/:studentId', function (req, res, next) {
-  console.log('req body is', req.body)
+  if (!req.session.user) {
+    res.sendStatus(401);
+  }
   Student.findById(req.params.studentId)
     .then(student => {
       return student.update(req.body);
@@ -46,6 +57,9 @@ router.put('/:studentId', function (req, res, next) {
 
 // Delete a student
 router.delete('/:studentId', function (req, res, next) {
+  if (!req.session.user) {
+    res.sendStatus(401);
+  }
   Student.findById(req.params.studentId)
     .then(student => {
       student.destroy();

@@ -4,7 +4,6 @@ import Student from './Student';
 import { NavLink } from 'react-router-dom';
 
 function StudentList (props) {
-  console.log('students are', props.students);
   return (
     <div className="row">
       <div className="col-xs-10">

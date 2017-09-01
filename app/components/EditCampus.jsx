@@ -20,10 +20,10 @@ class EditCampus extends React.Component {
 
   // ComponentWillReceiveProps is used to re-set state upon page refresh
   // Ternery is used to prevent errors due to campus object being undefined
-  componentWillReceiveProps() {
+  componentWillReceiveProps(nextProps) {
     this.setState({
-      name: this.props.campus && this.props.campus.name,
-      image: this.props.campus && this.props.campus.image
+      name: nextProps.campus && nextProps.campus.name,
+      image: nextProps.campus && nextProps.campus.image
     })
   }
 

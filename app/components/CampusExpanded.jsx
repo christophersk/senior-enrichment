@@ -20,6 +20,7 @@ function CampusExpanded ({campus, students, deleteCampus}) {
         <hr />
       </div>
       <div className="col-xs-12">
+        <h4>Students</h4>
         { students.sort((a,b) => a.id - b.id).map(student => {
             return (
               <div key={student.id}>

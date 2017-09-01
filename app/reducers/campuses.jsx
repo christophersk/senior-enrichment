@@ -8,6 +8,7 @@ const SET_CAMPUSES = 'SET_CAMPUSES';
 const ADD_CAMPUS = 'ADD_CAMPUS';
 const REMOVE_CAMPUS = 'REMOVE_CAMPUS';
 const REPLACE_CAMPUS = 'REPLACE_CAMPUS';
+const UNSET_CAMPUSES = 'UNSET_CAMPUSES';
 
 // ACTION CREATORS
 
@@ -31,6 +32,10 @@ export const replaceCampus = campus => ({
   campus
 })
 
+export const unsetCampuses = () => ({
+  type: UNSET_CAMPUSES
+})
+
 // REDUCER
 
 export default function (campuses = [], action) {
@@ -43,6 +48,8 @@ export default function (campuses = [], action) {
       return campuses.filter(campus => campus.id !== action.campusId);
     case REPLACE_CAMPUS:
       return campuses.filter(campus => campus.id !== action.campus.id).concat(action.campus);
+    case UNSET_CAMPUSES:
+      return [];
     default:
       return campuses;
   }

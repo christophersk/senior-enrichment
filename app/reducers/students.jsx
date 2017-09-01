@@ -8,6 +8,7 @@ const REMOVE_STUDENT = 'REMOVE_STUDENT'
 const ADD_STUDENT = 'ADD_STUDENT';
 const EDIT_STUDENT = 'EDIT_STUDENT';
 const REMOVE_STUDENTS_BY_CAMPUSID = 'REMOVE_STUDENTS_BY_CAMPUSID';
+const UNSET_STUDENTS = 'UNSET_STUDENTS';
 
 // ACTION CREATORS
 
@@ -36,6 +37,10 @@ export const removeStudentsByCampusId = campusId => ({
   campusId
 })
 
+export const unsetStudents = () => ({
+  type: UNSET_STUDENTS
+})
+
 // REDUCER
 
 export default function (students = [], action) {
@@ -50,6 +55,8 @@ export default function (students = [], action) {
       return students.filter(eachStudent => eachStudent.id !== action.student.id).concat(action.student);
     case REMOVE_STUDENTS_BY_CAMPUSID:
       return students.filter(eachStudent => eachStudent.campusId !== action.campusId);
+    case UNSET_STUDENTS:
+      return [];
     default:
       return students;
   }
