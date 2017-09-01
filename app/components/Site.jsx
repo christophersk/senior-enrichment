@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
-import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
-// import { Router } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
+import { Router } from 'react-router';
 import { connect } from 'react-redux';
 import { fetchUser } from '../reducers/user';
 import CampusList from './CampusList';
