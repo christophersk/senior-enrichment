@@ -67,6 +67,11 @@ class EditCampus extends React.Component {
   render() {
     const { name, image } = this.state;
     const students = this.props.students;
+
+    /*
+      You could pull campus from this.props too
+    */
+
     return (
       <div className="row">
         <div className="col-xs-12">

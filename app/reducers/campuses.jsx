@@ -36,6 +36,10 @@ export const unsetCampuses = () => ({
   type: UNSET_CAMPUSES
 })
 
+/*
+  For the action creators you're not using in other files, no need to export them
+*/
+
 // REDUCER
 
 export default function (campuses = [], action) {

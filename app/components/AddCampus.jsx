@@ -10,6 +10,9 @@ class AddCampus extends React.Component {
       name: '',
       campusId: null
     }
+    /*
+      It doesn't look like the state defined above is being used - if that's the case and no life cycle functions are being used, this component can be converted to a dummy component
+    */
   }
 
   render () {
@@ -57,3 +60,10 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(AddCampus);
+/*
+  If your mapState is empty, you can also pass in null in connect as the first argument
+*/
+
+/*
+  Hey Chris, great job - everything looks super clean. Just added a few notes here and there. I'm not super familiar with local authentication, so the pattern where you create new Promises I'm not exactly sure of - that said, it seems to make sense to me, and a brief looking on StackOverflow doesn't turn up any dominant patterns, so looks all right to me. Let me know if you've got any questions!
+*/
